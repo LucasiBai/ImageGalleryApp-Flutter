@@ -1,4 +1,4 @@
-# ImageGalleryApp
+# Image Gallery App
 
 This is an exercise done to practice widget states in Flutter.
 

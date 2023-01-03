@@ -56,10 +56,19 @@ class ImgList extends StatefulWidget {
 
 class _ImgListState extends State<ImgList> {
   int _totalFavs = 0;
+  int _rowLimit = 2;
 
   void sumToTotal(bool state) {
     setState(() {
       _totalFavs = state ? _totalFavs + 1 : _totalFavs - 1;
+    });
+  }
+
+  void updateRowLimit(num scale) {
+    setState(() {
+      if(_rowLimit/scale<5 && _rowLimit/scale>1){
+         _rowLimit = (_rowLimit / (scale)).round();
+      }
     });
   }
 
@@ -68,14 +77,19 @@ class _ImgListState extends State<ImgList> {
     return Stack(
       alignment: Alignment.topRight,
       children: [
-        Container(
-          color: Colors.white,
-          margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-          child: GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              children: _getImages()),
+        GestureDetector(
+          onScaleUpdate: (details) {
+            updateRowLimit(details.scale/2.5);
+          },
+          child: Container(
+            color: Colors.white,
+            margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+            child: GridView.count(
+                crossAxisCount: _rowLimit,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                children: _getImages()),
+          ),
         ),
         Container(
           color: Colors.black38,
@@ -147,12 +161,13 @@ class _ImgPreviewState extends State<ImgPreview> {
           height: 50,
           alignment: Alignment.centerRight,
           child: Container(
-            margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-            child: Text(
-              widget.title,
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ),
+              margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: FittedBox(
+                child: Text(
+                  widget.title,
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              )),
         ),
         Container(
           alignment: Alignment.topRight,

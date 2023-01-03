@@ -1,16 +1,20 @@
-# layout_practice
+# ImageGalleryApp
 
-This is a practice layout project.
+This is an exercise done to practice widget states in Flutter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+To clone and run this application, you'll need Git and Flutter CLI installed on your computer and
+use an Emulator.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- `git clone https://github.com/LucasiBai/ImageGalleryApp-Flutter.git` to download the code.
+- `cd ImageGalleryApp-Flutter` go into the repository.
+- `flutter run --profile` to run app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Tools:
+
+- Dart
+- Flutter

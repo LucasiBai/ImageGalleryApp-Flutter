@@ -1,40 +1,44 @@
-
 import 'package:flutter/material.dart';
 
 class ImgButton extends StatelessWidget {
-  const ImgButton({Key? key, this.isActive = false, required this.onChange})
+
+
+  const ImgButton({Key? key, this.isActive = false, Color this.color = Colors.redAccent,required this.onChange})
       : super(key: key);
 
   final bool isActive;
   final ValueChanged<bool> onChange;
+  final Color color;
 
-  void setValue() {
+
+  bool _isVertical(BuildContext context) {
+  return MediaQuery.of(context).size.width < 500;
+  }
+
+  void _setValue() {
     onChange(!isActive);
   }
 
   @override
   Widget build(BuildContext context) {
+    return _buttonLayout(context);
+
+  }
+
+  Widget _buttonLayout(BuildContext context) {
     return GestureDetector(
-      onTap: setValue,
+      onTap: _setValue,
       child: Container(
         padding: const EdgeInsets.all(5),
         width: 40,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
+        child:
             Icon(
               isActive ? Icons.favorite : Icons.favorite_border,
-              color: Colors.redAccent,
+              color: color,
+              size: _isVertical(context)? 20 : 30,
             ),
-            FittedBox(
-              child: Text(
-                isActive ? "Fav" : "No Fav",
-                style: const TextStyle(fontSize: 10),
-              ),
-            )
-          ],
+
         ),
-      ),
     );
   }
 }

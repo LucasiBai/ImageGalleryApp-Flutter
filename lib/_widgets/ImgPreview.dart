@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 
-import 'ImgButton.dart';
+import '../_widgets/ImgButton.dart';
 
 class ImgPreview extends StatefulWidget {
   const ImgPreview(
@@ -46,6 +45,7 @@ class _ImgPreviewState extends State<ImgPreview> {
           child: Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: FittedBox(
+                fit: BoxFit.cover,
                 child: Text(
                   widget.title,
                   style: TextStyle(color: Colors.white, fontSize: 30),

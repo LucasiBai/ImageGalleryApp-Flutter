@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:layout_practice/styles.dart';
 
 import '_widgets/ImgList.dart';
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
-      primaryColor: Colors.blueGrey,
-      backgroundColor: Colors.blueGrey[100],
-    ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)),
     darkTheme: ThemeData(
-      primaryColor: Colors.black87,
-      backgroundColor: Colors.black12,
-    ),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blueGrey, brightness: Brightness.dark)),
     home: const MyApp(),
   ));
 }
@@ -23,8 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Image Gallery"),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          "Image Gallery",
+          style: TextStyles.imageName,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
       body: ImgList(),
     );

@@ -44,7 +44,7 @@ class _ImgListState extends State<ImgList> {
                 updateRowLimit(details.scale / 2.5);
               },
               child: Container(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).colorScheme.background,
                 margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                 child: GridView.count(
                     crossAxisCount: _rowLimit,

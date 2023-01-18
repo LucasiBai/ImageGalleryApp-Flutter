@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:layout_practice/_widgets/FocusableButton.dart';
 import '../_widgets/ImgButton.dart';
 
 class ImgPreview extends StatefulWidget {
@@ -29,13 +30,16 @@ class _ImgPreviewState extends State<ImgPreview> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              border: Border.all(width: 2, color: Colors.black12),
-              borderRadius: const BorderRadius.all(Radius.circular(5))),
-          child: Image.network(widget.url, fit: BoxFit.cover),
+        Tooltip(
+          message: widget.title,
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                border: Border.all(width: 2, color: Colors.black12),
+                borderRadius: const BorderRadius.all(Radius.circular(5))),
+            child: Image.network(widget.url, fit: BoxFit.cover),
+          ),
         ),
         Container(
           color: Colors.black45,
@@ -48,15 +52,20 @@ class _ImgPreviewState extends State<ImgPreview> {
                 fit: BoxFit.cover,
                 child: Text(
                   widget.title,
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: const TextStyle(color: Colors.white, fontSize: 30),
                 ),
               )),
         ),
         Container(
           alignment: Alignment.topRight,
-          child: ImgButton(
-            isActive: _isActive,
-            onChange: handleSetActive,
+          child: FocusableButton(
+            button: ImgButton(
+              isActive: _isActive,
+              onChange: handleSetActive,
+            ),
+            onEnter: () {
+              handleSetActive(!_isActive);
+            },
           ),
         )
       ],

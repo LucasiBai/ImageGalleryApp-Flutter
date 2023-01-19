@@ -1,12 +1,17 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import '../services/data.dart';
+import 'package:flutter/material.dart';
+import 'package:layout_practice/services/dataService.dart';
+
+
 import './ImgPreview.dart';
+
+
 
 class ImgList extends StatefulWidget {
   ImgList({Key? key}) : super(key: key);
 
-  final List images = [...imageList, ...imageList, ...imageList];
+  List images = [];
 
   @override
   State<ImgList> createState() => _ImgListState();
@@ -15,6 +20,14 @@ class ImgList extends StatefulWidget {
 class _ImgListState extends State<ImgList> {
   int _totalFavs = 0;
   int _rowLimit = 2;
+
+  void getImages() async {
+    final data = await getData();
+
+    setState(() {
+      widget.images = data;
+    });
+  }
 
   void sumToTotal(bool state) {
     setState(() {
@@ -34,6 +47,7 @@ class _ImgListState extends State<ImgList> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
+          getImages();
       if (constraints.maxWidth < 500) {
         _rowLimit = 2;
         return Stack(
@@ -77,7 +91,7 @@ class _ImgListState extends State<ImgList> {
               updateRowLimit(details.scale / 2.5);
             },
             child: Container(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.background,
               margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
               child: GridView.count(
                   crossAxisCount: _rowLimit,

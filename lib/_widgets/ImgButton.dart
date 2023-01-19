@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ImgButton extends StatelessWidget {
-  const ImgButton(
-      {Key? key,
-      this.isActive = false,
-      Color this.color = Colors.redAccent,
-      required this.onChange})
+  const ImgButton({Key? key,
+    this.isActive = false,
+    Color this.color = Colors.redAccent,
+    required this.onChange})
       : super(key: key);
 
   final bool isActive;
@@ -13,12 +12,16 @@ class ImgButton extends StatelessWidget {
   final Color color;
 
   bool _isVertical(BuildContext context) {
-    return MediaQuery.of(context).size.width < 500;
+    return MediaQuery
+        .of(context)
+        .size
+        .width < 500;
   }
 
   void _setValue() {
     onChange(!isActive);
   }
+
 
   @override
   Widget build(BuildContext context) {
